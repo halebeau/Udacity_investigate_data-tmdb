@@ -8,9 +8,9 @@ This project investigates the TMDb (The Movie Database) dataset containing infor
 
 ## Research Questions
 
-1. How is adjusted profit distributed across the movies with complete financial data?
-2. Do higher adjusted budgets tend to relate to higher adjusted profits?
-3. How do popularity, vote count, and vote average relate to adjusted profit?
+1. **How is adjusted profit distributed across the movies with complete financial data?**
+2. **Do higher adjusted budgets tend to relate to higher adjusted profits?**
+3. **How do popularity, vote count, and vote average relate to adjusted profit?**
 
 ## Key Findings
 
