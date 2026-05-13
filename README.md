@@ -42,7 +42,7 @@ This project investigates the TMDb (The Movie Database) dataset containing infor
 
 ## Tech Stack
 
-- Python 3, NumPy, pandas, Matplotlib, Seaborn
+- Python 3, NumPy, pandas, Matplotlib, Seaborn, Jupyter.
 
 ## Limitations
 
