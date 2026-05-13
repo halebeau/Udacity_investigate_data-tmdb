@@ -1,10 +1,21 @@
 # Investigate a Dataset: TMDb Movie Analysis
 
+### Project Preview
+<img width="700" alt="TMDb movie analysis project preview" src="https://github.com/user-attachments/assets/067b6ad9-8864-4aa0-bf9b-f48a4282b3e1" />
+
+### How to View
+
+For the easiest viewing experience, open the HTML export:
+
+`Investigate_a_Dataset_TMDb.html`
+
+The full notebook is also included for reviewing the code and analysis.
+
 > Udacity Data Analyst Nanodegree — Project 1
 
 ## Overview
 
-This project investigates the TMDb (The Movie Database) dataset containing information about **10,878 movies**, including user ratings, revenue, budget, genres, and more. The analysis explores trends in the movie industry through three research questions.
+This project investigates the TMDb (The Movie Database) dataset containing information about **10,866 movies**, including user ratings, revenue, budget, genres, and more. The analysis explores trends in the movie industry through three research questions.
 
 ## Research Questions
 
@@ -17,7 +28,7 @@ This project investigates the TMDb (The Movie Database) dataset containing infor
 - Adjusted profit varied widely across movies, with a few major blockbuster films pulling the average profit much higher than the median profit.
 - About 72% of movies in the cleaned profit dataset had a positive adjusted profit.
 - Higher adjusted budgets were generally associated with higher adjusted profits, but a higher budget did not guarantee profitability.
-- Movies in the very high budget group had the highest median adjusted profit and the highest profitable rate.
+- Movies in the very high budget group had the highest median adjusted profit and the highest profitability rate.
 - Popularity and vote count had stronger positive relationships with adjusted profit than vote average.
 - The strongest variables associated with higher adjusted profit were adjusted budget, popularity, and vote count.
 
