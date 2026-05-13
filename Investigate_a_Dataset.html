@@ -8784,6 +8784,98 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Use a NumPy array to calculate adjusted profit percentiles</span>
+<span class="n">profit_array</span> <span class="o">=</span> <span class="n">profit_movies</span><span class="p">[</span><span class="s1">'profit_adj_millions'</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">profit_percentiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">profit_array</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+
+<span class="n">profit_percentile_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Percentile'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'25th'</span><span class="p">,</span> <span class="s1">'50th / Median'</span><span class="p">,</span> <span class="s1">'75th'</span><span class="p">,</span> <span class="s1">'90th'</span><span class="p">],</span>
+    <span class="s1">'Adjusted Profit (Millions of Dollars)'</span><span class="p">:</span> <span class="n">profit_percentiles</span>
+<span class="p">})</span>
+
+<span class="n">profit_percentile_summary</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Percentile</th>
+<th>Adjusted Profit (Millions of Dollars)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>25th</td>
+<td>-1.50</td>
+</tr>
+<tr>
+<th>1</th>
+<td>50th / Median</td>
+<td>27.37</td>
+</tr>
+<tr>
+<th>2</th>
+<td>75th</td>
+<td>107.45</td>
+</tr>
+<tr>
+<th>3</th>
+<td>90th</td>
+<td>275.99</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The NumPy percentile calculation shows that adjusted profit is highly spread out. The median movie earned much less than the highest-profit movies, while the 90th percentile shows that only a smaller group of movies earned very high adjusted profits.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Histogram of adjusted profit.</span>
 <span class="c1"># The x-axis is limited to the 1st and 99th percentiles so the main distribution is easier to see.</span>
 <span class="n">lower_limit</span> <span class="o">=</span> <span class="n">profit_movies</span><span class="p">[</span><span class="s1">'profit_adj_millions'</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
@@ -8819,7 +8911,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Ten movies with the highest adjusted profit</span>
@@ -8839,7 +8931,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9025,7 +9117,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scatter_with_trend</span><span class="p">(</span>
@@ -9058,7 +9150,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create budget groups using quintiles</span>
@@ -9081,7 +9173,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9162,7 +9254,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Bar chart of median adjusted profit by budget level</span>
@@ -9219,7 +9311,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scatter_with_trend</span><span class="p">(</span>
@@ -9252,7 +9344,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create popularity groups using quintiles</span>
@@ -9275,7 +9367,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9356,7 +9448,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Bar chart of median adjusted profit by popularity level</span>
@@ -9390,7 +9482,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scatter_with_trend</span><span class="p">(</span>
@@ -9423,7 +9515,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scatter_with_trend</span><span class="p">(</span>
@@ -9456,7 +9548,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Correlation table for adjusted profit and selected numeric variables</span>
@@ -9476,7 +9568,7 @@ Percentage of movies with positive adjusted profit: 72.1%
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>profit_adj     1.00
 vote_count     0.61
@@ -9514,6 +9606,7 @@ Name: profit_adj, dtype: float64</pre>
 <p>Higher adjusted budgets are associated with higher adjusted profits, especially when movies are grouped into budget levels. The very high budget group had the highest median adjusted profit and the highest profitable rate. However, some high-budget movies still lost money, so budget alone does not guarantee success.</p>
 <p>Popularity and vote count showed stronger positive relationships with adjusted profit than vote average. This suggests that audience attention and engagement are more closely connected to profit than rating score alone. Vote average still had a positive relationship, but it was weaker.</p>
 <p>Overall, the variables most associated with higher adjusted profit in this analysis were adjusted budget, popularity, and vote count. These findings show relationships in the data, but they do not prove causation.</p>
+<h3 id="Additional-Research">Additional Research<a class="anchor-link" href="#Additional-Research">¶</a></h3><p>Additional research could improve this analysis by including more complete financial data, especially marketing costs, distribution costs, streaming revenue, international box office revenue, and licensing revenue. This would make the profit calculation more complete. Future analysis could also compare genres, production companies, and release periods to see whether certain types of movies are more consistently profitable.</p>
 </div>
 </div>
 </div>
@@ -9537,7 +9630,7 @@ Name: profit_adj, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Running this cell will execute a bash command to convert this notebook to an .html file</span>
@@ -9556,7 +9649,7 @@ Name: profit_adj, dtype: float64</pre>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>[NbConvertApp] Converting notebook Investigate_a_Dataset.ipynb to html
 [NbConvertApp] WARNING | Alternative text is missing on 7 image(s).
-[NbConvertApp] Writing 947382 bytes to Investigate_a_Dataset.html
+[NbConvertApp] Writing 950098 bytes to Investigate_a_Dataset.html
 </pre>
 </div>
 </div>
